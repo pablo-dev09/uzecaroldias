@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carol Dias — Conjuntos | Do RJ para todo o Brasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F0E6;
+    --cream-deep:#ECE0CC;
+    --navy:#1C2240;
+    --navy-soft:#2A3155;
+    --charcoal:#2B2620;
+    --gold:#B6873E;
+    --gold-light:#D9B870;
+    --blush:#E3B3AC;
+    --lilac:#C9A2D6;
+    --white:#FFFFFF;
+    --line: rgba(43,38,32,0.14);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Jost', sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:11.5px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(246,240,230,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1180px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brandmark{
+    display:flex; align-items:center; gap:10px;
+  }
+  .brandmark .ring{
+    width:34px; height:34px; border-radius:50%;
+    background:conic-gradient(from 180deg, var(--lilac), var(--blush), var(--gold-light), var(--lilac));
+    display:flex; align-items:center; justify-content:center;
+    padding:2px;
+  }
+  .brandmark .ring span{
+    width:100%; height:100%; border-radius:50%;
+    background:var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif;
+    font-size:13px; font-weight:600; color:var(--gold);
+  }
+  .brandmark .name{
+    font-family:'Cormorant Garamond', serif;
+    font-size:21px; letter-spacing:0.06em;
+    font-weight:600;
+  }
+  .navlinks{
+    display:flex; align-items:center; gap:34px;
+    font-size:13px; letter-spacing:0.04em;
+  }
+  .navlinks a{
+    position:relative; padding-bottom:3px;
+  }
+  .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold); transition:width 0.3s ease;
+  }
+  .navlinks a:hover::after{ width:100%; }
+  .nav-cta{
+    background:var(--navy); color:var(--cream);
+    padding:10px 20px; border-radius:30px;
+    font-size:12.5px; letter-spacing:0.04em;
+    display:flex; align-items:center; gap:7px;
+    transition:background 0.3s ease, transform 0.3s ease;
+  }
+  .nav-cta:hover{ background:var(--gold); transform:translateY(-1px); }
+  .navlinks a:not(.nav-cta){display:none;}
+  @media(min-width:760px){ .navlinks a:not(.nav-cta){display:inline;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding:140px 0 90px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(201,162,214,0.22), transparent 45%),
+      radial-gradient(circle at 10% 85%, rgba(214,184,112,0.22), transparent 45%);
+    pointer-events:none;
+  }
+  .hero-leaf{
+    position:absolute; right:-60px; top:50%; transform:translateY(-50%);
+    width:480px; opacity:0.5;
+    z-index:0;
+  }
+  .hero-inner{
+    position:relative; z-index:1;
+    max-width:1180px; margin:0 auto; padding:0 28px;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center;
+  }
+  @media(max-width:880px){ .hero-inner{grid-template-columns:1fr;} }
+
+  .hero h1{
+    font-size:clamp(48px, 7vw, 92px);
+    line-height:0.96;
+    color:var(--navy);
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--gold);
+  }
+  .hero p.lead{
+    max-width:430px; font-size:16.5px; color:#52483c;
+    margin-bottom:34px;
+  }
+  .hero-ctas{
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:15px 30px; border-radius:40px;
+    font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
+    transition:transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--navy); color:var(--cream);
+  }
+  .btn-primary:hover{ background:var(--gold); transform:translateY(-2px); box-shadow:0 10px 24px rgba(28,34,64,0.22); }
+  .btn-ghost{
+    border-color:var(--navy); color:var(--navy);
+  }
+  .btn-ghost:hover{ background:var(--navy); color:var(--cream); transform:translateY(-2px); }
+
+  .hero-card{
+    position:relative;
+    background:var(--navy);
+    border-radius:6px;
+    padding:38px 32px;
+    color:var(--cream);
+    box-shadow:0 30px 60px -20px rgba(28,34,64,0.45);
+  }
+  .hero-card .tag{
+    font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold-light);
+  }
+  .hero-card h3{
+    font-size:30px; margin:14px 0 10px; color:var(--cream);
+  }
+  .hero-card p{ font-size:14px; color:#cfd2e3; margin-bottom:22px; }
+  .hero-stats{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    border-top:1px solid rgba(255,255,255,0.15);
+    padding-top:20px; gap:10px;
+  }
+  .hero-stats div b{
+    display:block; font-family:'Cormorant Garamond',serif; font-size:26px; color:var(--gold-light);
+  }
+  .hero-stats div span{ font-size:10.5px; letter-spacing:0.05em; color:#aeb2c8; text-transform:uppercase; }
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    font-size:10.5px; letter-spacing:0.3em; text-transform:uppercase; color:var(--navy);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    opacity:0.6;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:var(--navy); animation:scrollline 2s infinite; }
+  @keyframes scrollline{ 0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;} }
+
+  /* ---------- SOBRE ---------- */
+  .sobre{ padding:120px 0 100px; }
+  .sobre-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:start;
+  }
+  @media(max-width:880px){ .sobre-grid{grid-template-columns:1fr; gap:40px;} }
+  .sobre h2{ font-size:clamp(34px,4vw,48px); color:var(--navy); margin:14px 0 22px; }
+  .sobre p{ font-size:16px; color:#4a4136; max-width:480px; margin-bottom:16px;}
+  .sobre-quote{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:24px; color:var(--navy); line-height:1.4;
+    border-left:2px solid var(--gold);
+    padding-left:24px; margin-top:10px;
+  }
+  .sobre-stats{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:14px;
+  }
+  .stat-card{
+    background:var(--white); border:1px solid var(--line); border-radius:4px;
+    padding:26px 20px; text-align:left;
+  }
+  .stat-card b{ font-family:'Cormorant Garamond', serif; font-size:38px; color:var(--gold); display:block; }
+  .stat-card span{ font-size:12px; color:#6b6051; letter-spacing:0.02em; }
+
+  /* ---------- COLEÇÃO (vitrine) ---------- */
+  .colecao{ padding:90px 0 110px; background:var(--cream-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .colecao-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:30px; margin-bottom:48px; flex-wrap:wrap; }
+  .colecao-head h2{ font-size:clamp(32px,4vw,46px); color:var(--navy); margin-top:12px; }
+  .colecao-head p{ max-width:340px; font-size:14.5px; color:#5b5142; }
+
+  .vitrine{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:18px;
+  }
+  @media(max-width:980px){ .vitrine{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .vitrine{grid-template-columns:1fr;} }
+
+  .swatch-card{
+    background:var(--white);
+    border-radius:4px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .swatch-card:hover{ transform:translateY(-8px); box-shadow:0 24px 40px -20px rgba(28,34,64,0.25); }
+  .swatch-top{
+    height:200px; position:relative;
+    display:flex; align-items:flex-end; padding:14px;
+  }
+  .swatch-top .tag{
+    background:rgba(255,255,255,0.85); color:var(--navy);
+    font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    padding:6px 10px; border-radius:20px;
+  }
+  .swatch-body{ padding:18px 18px 22px; }
+  .swatch-body h4{ font-family:'Cormorant Garamond', serif; font-size:21px; color:var(--navy); margin-bottom:4px; }
+  .swatch-body span{ font-size:12px; color:#7a7062; }
+
+  .sw-marinho{ background:linear-gradient(160deg, #1C2240, #2C3460); }
+  .sw-areia{ background:linear-gradient(160deg, #E3D4B6, #CDB98E); }
+  .sw-mescla{ background:linear-gradient(160deg, #C7C2BA, #A6A097); }
+  .sw-gelo{ background:linear-gradient(160deg, #C7DAE6, #A9C2D2); }
+  .sw-listrado{ background:repeating-linear-gradient(135deg, #E7B8C4 0px, #E7B8C4 14px, #B9B6C9 14px, #B9B6C9 28px); }
+
+  /* ---------- INFO STRIP ---------- */
+  .info{ padding:110px 0 100px; }
+  .info-head{ margin-bottom:50px; }
+  .info-head h2{ font-size:clamp(32px,4vw,46px); color:var(--navy); margin-top:12px; max-width:560px; }
+
+  .info-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media(max-width:880px){ .info-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .info-grid{grid-template-columns:1fr;} }
+
+  .info-card{
+    background:var(--cream); padding:36px 28px;
+    min-height:230px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .info-card .num{ font-family:'Cormorant Garamond', serif; font-size:15px; color:var(--gold); }
+  .info-card h3{ font-size:24px; color:var(--navy); margin:18px 0 10px; }
+  .info-card p{ font-size:13.5px; color:#5b5142; }
+  .info-card p + p{ margin-top:8px; }
+  .info-card b{ color:var(--navy); font-weight:600; }
+
+  /* ---------- LOCALIZAÇÃO ---------- */
+  .local{ padding:0 0 110px; }
+  .local-card{
+    background:var(--navy); color:var(--cream);
+    border-radius:6px; padding:54px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+    position:relative; overflow:hidden;
+  }
+  @media(max-width:780px){ .local-card{grid-template-columns:1fr; padding:38px 26px;} }
+  .local-card::after{
+    content:''; position:absolute; right:-80px; bottom:-80px; width:260px; height:260px;
+    border-radius:50%; background:radial-gradient(circle, rgba(201,162,214,0.25), transparent 70%);
+  }
+  .local-card h2{ font-size:clamp(28px,3.4vw,38px); color:var(--cream); margin:14px 0 18px; }
+  .local-card p{ font-size:15px; color:#cfd2e3; margin-bottom:8px; }
+  .local-card .addr{ font-size:18px; font-family:'Cormorant Garamond', serif; color:var(--gold-light); margin:14px 0 6px; }
+  .pin-deco{
+    width:100%; aspect-ratio:1/1; max-width:230px; margin:0 auto;
+    border:1px solid rgba(255,255,255,0.18); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; position:relative;
+  }
+  .pin-deco::before{
+    content:''; position:absolute; inset:24px; border:1px solid rgba(255,255,255,0.14); border-radius:50%;
+  }
+  .pin-deco svg{ width:46px; height:46px; }
+
+  /* ---------- TROCAS DETAIL ---------- */
+  .trocas{ padding:0 0 110px; }
+  .trocas-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+  @media(max-width:880px){ .trocas-grid{grid-template-columns:1fr;} }
+  .trocas h2{ font-size:clamp(30px,4vw,42px); color:var(--navy); margin:14px 0 18px; }
+  .trocas p{ font-size:15.5px; color:#4a4136; margin-bottom:14px; max-width:460px; }
+  .pill-list{ display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+  .pill{
+    border:1px solid var(--line); padding:9px 16px; border-radius:30px;
+    font-size:12.5px; color:#5b5142;
+  }
+  .trocas-card{
+    background:var(--white); border:1px solid var(--line); border-radius:4px; padding:34px;
+  }
+  .trocas-card .eyebrow{ display:block; margin-bottom:10px; }
+  .trocas-card ul{ list-style:none; margin-top:16px; }
+  .trocas-card li{
+    display:flex; justify-content:space-between; padding:13px 0; border-bottom:1px solid var(--line);
+    font-size:14px; color:var(--charcoal);
+  }
+  .trocas-card li:last-child{ border-bottom:none; }
+  .trocas-card li span{ color:#8a8070; font-size:12.5px; }
+
+  /* ---------- CTA FOOTER ---------- */
+  .cta-banner{
+    margin:0 28px 0; max-width:1180px; margin-left:auto; margin-right:auto;
+    background:linear-gradient(135deg, var(--gold), var(--blush) 60%, var(--lilac));
+    border-radius:8px; padding:64px 50px;
+    text-align:center;
+  }
+  .cta-banner .eyebrow{ color:var(--navy); }
+  .cta-banner h2{ color:var(--navy); font-size:clamp(32px,5vw,52px); margin:14px 0 26px; }
+  .cta-banner .btn-primary{ background:var(--navy); }
+
+  footer{ padding:70px 0 40px; }
+  .foot-grid{
+    display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid var(--line);
+  }
+  @media(max-width:760px){ .foot-grid{grid-template-columns:1fr; gap:30px;} }
+  .foot-grid h4{ font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .foot-grid p, .foot-grid a{ font-size:13.5px; color:#5b5142; display:block; margin-bottom:8px; }
+  .foot-grid a:hover{ color:var(--navy); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:26px; flex-wrap:wrap; gap:10px;
+    font-size:12px; color:#8a8070;
+  }
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; z-index:99;
+    background:#1C2240; color:#fff;
+    width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 14px 30px -8px rgba(28,34,64,0.5);
+    transition:transform 0.3s ease, background 0.3s ease;
+  }
+  .wa-float:hover{ transform:scale(1.08); background:var(--gold); }
+  .wa-float svg{ width:26px; height:26px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brandmark">
+      <span class="ring"><span>CD</span></span>
+      <span class="name">CAROL DIAS</span>
+    </a>
+    <div class="navlinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#info">Entregas &amp; Horário</a>
+      <a href="#local">Loja física</a>
+      <a class="nav-cta" href="https://wa.link/t24wpf" target="_blank" rel="noopener">
+        Pedir no WhatsApp
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <svg class="hero-leaf" viewBox="0 0 400 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M200 600C200 600 60 460 60 280C60 140 200 20 200 20C200 20 340 140 340 280C340 460 200 600 200 600Z" stroke="#B6873E" stroke-width="1" opacity="0.35"/>
+    <path d="M200 600V20" stroke="#B6873E" stroke-width="1" opacity="0.35"/>
+    <path d="M200 100C200 100 250 140 250 200" stroke="#B6873E" stroke-width="1" opacity="0.3"/>
+    <path d="M200 220C200 220 260 260 270 320" stroke="#B6873E" stroke-width="1" opacity="0.3"/>
+    <path d="M200 340C200 340 270 380 280 440" stroke="#B6873E" stroke-width="1" opacity="0.3"/>
+    <path d="M200 100C200 100 150 140 150 200" stroke="#B6873E" stroke-width="1" opacity="0.3"/>
+    <path d="M200 220C200 220 140 260 130 320" stroke="#B6873E" stroke-width="1" opacity="0.3"/>
+    <path d="M200 340C200 340 130 380 120 440" stroke="#B6873E" stroke-width="1" opacity="0.3"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="reveal in">
+      <span class="eyebrow">Conjuntos em tricot &amp; moletom</span>
+      <h1>Conforto que se veste com <em>elegância</em>.</h1>
+      <p class="lead">Conjuntos pensados para o dia a dia carioca — caimento impecável, tecidos macios e looks que saem de casa prontos para qualquer hora. Do RJ para todo o Brasil.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.link/t24wpf" target="_blank" rel="noopener">Fazer pedido</a>
+        <a class="btn btn-ghost" href="#info">Como comprar</a>
+      </div>
+    </div>
+
+    <div class="hero-card reveal in">
+      <span class="tag">Loja oficial</span>
+      <h3>Uze Carol Dias</h3>
+      <p>Por @carolinemdias_ — peças autorais, entrega via motoboy em até 24h e troca facilitada para você comprar com confiança.</p>
+      <div class="hero-stats">
+        <div><b>218</b><span>Looks publicados</span></div>
+        <div><b>5,2k</b><span>Clientes no IG</span></div>
+        <div><b>24h</b><span>Entrega via motoboy</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span class="line"></span>role</div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="wrap sobre-grid">
+    <div class="reveal">
+      <span class="eyebrow">Sobre a marca</span>
+      <h2>Feita no Rio,<br>vestida no Brasil todo.</h2>
+      <p>A Carol Dias nasceu para vestir mulheres que não abrem mão de conforto, mas também não dispensam um caimento bonito. Conjuntos em tricot e moletom, modelados peça a peça, fotografados e enviados diretamente da loja física na Rua Cosmos, no Rio de Janeiro.</p>
+      <p class="sobre-quote">"Compre clicando no link — sua peça chega em até 24h por motoboy, ou venha provar pessoalmente na loja."</p>
+    </div>
+    <div class="reveal">
+      <div class="sobre-stats">
+        <div class="stat-card"><b>10:00</b><span>Abertura de segunda a domingo</span></div>
+        <div class="stat-card"><b>3 dias</b><span>Prazo para troca de peças</span></div>
+        <div class="stat-card"><b>RJ</b><span>Loja física embaixo da Prime Fit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="wrap">
+    <div class="info-head reveal">
+      <span class="eyebrow">Como funciona</span>
+      <h2>Tudo o que você precisa saber antes de comprar</h2>
+    </div>
+
+    <div class="info-grid reveal">
+      <div class="info-card">
+        <span class="num">01</span>
+        <div>
+          <h3>Entregas</h3>
+          <p>Fazemos entrega <b>delivery</b> via motoboy, chegando em até 24h no Rio de Janeiro.</p>
+          <p>Pedidos pelo WhatsApp: <b>(21) 97036-0219</b></p>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="num">02</span>
+        <div>
+          <h3>Horário</h3>
+          <p><b>Segunda a sábado:</b> 10h às 19h</p>
+          <p><b>Domingo:</b> 10h às 14h</p>
+          <p>Seg. a sex. fechamos para almoço de 12h às 13h. Sábado é horário direto.</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="num">03</span>
+        <div>
+          <h3>Loja física</h3>
+          <p>Rua Cosmos, 105 — Rio de Janeiro/RJ</p>
+          <p>Embaixo da Academia Prime Fit, antiga Rua 5.</p>
+        </div>
+      </div>
+      <div class="info-card">
+        <span class="num">04</span>
+        <div>
+          <h3>Trocas</h3>
+          <p>Prazo de <b>3 dias corridos</b>, com etiqueta, nota de compra e sem uso.</p>
+          <p>Não trocamos peças em renda, tule, brilho, branco ou em promoção.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="local" id="local">
+  <div class="wrap">
+    <div class="local-card reveal">
+      <div>
+        <span class="eyebrow" style="color:var(--gold-light)">Visite a loja</span>
+        <h2>Venha provar pessoalmente</h2>
+        <p class="addr">Rua Cosmos, 105 — Rio de Janeiro, RJ · CEP 23060-380</p>
+        <p>Ponto de referência: embaixo da Academia Prime Fit, na antiga Rua 5.</p>
+        <p>Atendimento de segunda a domingo, com pausa para almoço de seg. a sex.</p>
+        <div style="margin-top:26px;">
+          <a class="btn btn-primary" href="https://wa.link/t24wpf" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="pin-deco">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#D9B870" stroke-width="1.3"><path d="M12 21s-7-7.2-7-12a7 7 0 1 1 14 0c0 4.8-7 12-7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trocas">
+  <div class="wrap trocas-grid">
+    <div class="reveal">
+      <span class="eyebrow">Política de trocas</span>
+      <h2>Compre com tranquilidade</h2>
+      <p>Você tem 3 dias corridos a partir do recebimento para solicitar a troca, desde que a peça esteja com etiqueta afixada, sem uso e acompanhada da nota de compra.</p>
+      <p>Algumas categorias não entram na política de troca — confira ao lado antes de finalizar seu pedido.</p>
+      <div class="pill-list">
+        <span class="pill">Etiqueta afixada</span>
+        <span class="pill">Nota de compra</span>
+        <span class="pill">Sem uso</span>
+      </div>
+    </div>
+    <div class="trocas-card reveal">
+      <span class="eyebrow">Não trocamos</span>
+      <ul>
+        <li>Peças usadas <span>fora do prazo ou sem etiqueta</span></li>
+        <li>Renda <span>tecido delicado</span></li>
+        <li>Tule <span>tecido delicado</span></li>
+        <li>Brilho <span>acabamento especial</span></li>
+        <li>Branco <span>peça clara</span></li>
+        <li>Peças em promoção <span>condição especial</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:110px;">
+  <div class="wrap">
+    <div class="cta-banner reveal">
+      <span class="eyebrow">Pronta para o próximo conjunto?</span>
+      <h2>Fale com a Carol Dias agora</h2>
+      <a class="btn btn-primary" href="https://wa.link/t24wpf" target="_blank" rel="noopener">Comprar pelo WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Carol Dias</h4>
+        <p style="max-width:320px;">Conjuntos em tricot e moletom, do Rio de Janeiro para todo o Brasil. Por @carolinemdias_.</p>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <a href="https://wa.link/t24wpf" target="_blank" rel="noopener">WhatsApp: (21) 97036-0219</a>
+        <a href="https://www.instagram.com/uzecaroldias/" target="_blank" rel="noopener">@uzecaroldias</a>
+      </div>
+      <div>
+        <h4>Loja física</h4>
+        <p>Rua Cosmos, 105 — Rio de Janeiro/RJ</p>
+        <p>Embaixo da Academia Prime Fit</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Carol Dias. Todos os direitos reservados.</span>
+      <span>Proibido o uso de imagem.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.link/t24wpf" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.85.5 3.58 1.36 5.07L2 22l5.21-1.37a9.86 9.86 0 0 0 4.83 1.23h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.78 14.07c-.25.7-1.25 1.29-1.92 1.4-.51.08-1.13.12-2.78-.52-2.33-.93-3.84-3.28-3.96-3.43-.12-.16-.96-1.28-.96-2.44 0-1.16.6-1.73.82-1.97.22-.24.48-.3.64-.3.16 0 .32 0 .46.01.15.01.35-.06.55.42.21.5.7 1.72.76 1.85.06.13.1.28.02.44-.08.16-.12.26-.24.4-.12.14-.26.31-.37.42-.12.12-.25.25-.11.49.14.24.62 1.02 1.33 1.65.92.82 1.69 1.07 1.94 1.19.25.12.4.1.55-.06.15-.16.63-.73.8-.98.17-.25.34-.21.57-.13.23.08 1.46.69 1.71.82.25.13.42.19.48.3.06.11.06.62-.19 1.32Z"/></svg>
+</a>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, {threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
